@@ -64,10 +64,11 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+    const skor = Math.floor(Math.random()*16 + 10);
+    return skor
 }
-
+console.log (takimSkoru())
 
 
 
@@ -86,10 +87,20 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(callback, periyot){
+  let evSahibi = 0;
+  let konukTakım =0;
+  for (let i=1; i<= periyot; i++){
+  evSahibi = evSahibi + callback();
+  konukTakım = konukTakım + callback()
+  }
+  const result = {
+    "EvSahibi": evSahibi,
+  "KonukTakim": konukTakım
+  }
+  return result
 }
-
+//console.log (macSonucu(takimSkoru,4))
 
 
 
@@ -107,13 +118,14 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   "KonukTakim": 12
 }
   */
-
-
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-
+function periyotSkoru(takimSkoru) {
+  let result = {
+    "EvSahibi": takimSkoru(),
+    "KonukTakim": takimSkoru()
+  };
+  return result
 }
-
+console.log (periyotSkoru(takimSkoru))
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
 Aşağıdaki skorTabelasi() fonksiyonunu kullanarak aşağıdakileri yapınız:
@@ -146,8 +158,16 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function skorTabelasi(periyotSkoru, takimSkoru, periyot) {
+  const result = [];
+  let evSahibi = 0
+  let konukTakim = 0
+  for (let i=1; i<=periyot; i++){
+    let periyotSonucu = periyotSkoru(takimSkoru);
+    evSahibi = evSahibi + periyotSonucu.evSahibi;
+    konukTakim = konukTakim + periyotSonucu.konukTakim;
+  
+  }
 }
 
 
